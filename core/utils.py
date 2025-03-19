@@ -25,7 +25,7 @@ from django.conf import settings
 #     return True
 
 
-def send_message_to_admin(admin_email, message_obj):
+def send_message_to_admins(admin_emails, message_obj):
     subject = message_obj.subject
     plain_message = f"""
     Name: {message_obj.name}
@@ -49,7 +49,7 @@ def send_message_to_admin(admin_email, message_obj):
         subject=subject,
         body=plain_message,
         from_email=settings.DEFAULT_FROM_EMAIL,
-        to=[admin_email]
+        to=admin_emails  # list of emails here
     )
     msg.attach_alternative(html_message, "text/html")
     msg.send()
