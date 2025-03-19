@@ -31,6 +31,8 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',        # Cors-headers
+
     'jazzmin',  # Add this first!
     "django.contrib.admin",
     "django.contrib.auth",
@@ -42,6 +44,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+     # For Cors-headers
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -50,6 +54,25 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+
+# For Cors-headers
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:8000",
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://localhost:3002",
+    "http://localhost:3003",
+    "http://localhost:3008",
+    "http://127.0.0.1:5500/contact.html",
+    "https://techcole.com/contact.html"
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://18.220.70.62:8005",
+    "https://superfriday.devssh.xyz"
+]
+
 
 ROOT_URLCONF = "email_system.urls"
 
