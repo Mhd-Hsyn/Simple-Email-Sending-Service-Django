@@ -172,17 +172,25 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 
 
 
-# Email COnfiguration
+# Email COnfiguration   for port 465 1️⃣ For port 465 (SSL):
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = config("EMAIL_HOST")
-# EMAIL_USE_TLS = False
-# EMAIL_USE_SSL = True  # Enable SSL on 465 port
-
-EMAIL_USE_TLS = True   # Yeh True hona chahiye
-EMAIL_USE_SSL = False  # Yeh False hona chahiye
-EMAIL_PORT = config("EMAIL_PORT")
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True   # <-- This must be True for port 465
+EMAIL_PORT = config("EMAIL_PORT")  # 465
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 
-
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+# 2️⃣ For port 587 (TLS):
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = config("EMAIL_HOST")
+# EMAIL_USE_TLS = True    # <-- This must be True for port 587
+# EMAIL_USE_SSL = False
+# EMAIL_PORT = config("EMAIL_PORT")  # 587
+# EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
